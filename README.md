@@ -7,6 +7,18 @@ Example UI testing using Selenium with Behave in Python.
 git clone https://github.com/marciovrl/example-selenium-python.git
 ```
 
+# Run in a Docker
+- Build conteiner
+```
+docker build -t docker-behave .
+```
+
+- Run conteiner
+```
+docker run docker-behave
+```
+
+# Run without Docker use 
 - Install dependencies
 ```
 pip install -r requirements.txt
