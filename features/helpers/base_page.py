@@ -2,7 +2,10 @@ from selenium import webdriver
 
 class BasePage(object):
 
-    driver = webdriver.Chrome()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.implicitly_wait(30)
     driver.set_page_load_timeout(30)
 
