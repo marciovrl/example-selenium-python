@@ -1,8 +1,5 @@
-from selenium import webdriver
-
 from selenium.webdriver.common.by import By
 from features.helpers.base_page import BasePage
-
 
 class HomePageLocator(object):
     INPUT_ITEM = (By.NAME, 'as_word')
