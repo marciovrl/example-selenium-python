@@ -7,8 +7,8 @@ class HomePageLocator(object):
     LABEL_ITEM_SEARCH = (By.XPATH, "//h1[@class='breadcrumb__title'][text()='golf']")
 
 class HomePage(BasePage):
-    def navigate_to(self):
-        self.go_url('https://mercadolivre.com.br/')
+    def navigate_to(self, url):
+        self.go_url(url)
     
     def search_item(self, item):
         self.input_text(item, *HomePageLocator.INPUT_ITEM)
