@@ -5,7 +5,7 @@ from features.pages.home_page import HomePage
 @step(u'that it is on the homepage of Mercado Livre')
 def step_impl(context):
     context.home_page = HomePage()
-    context.home_page.navigate_to()
+    context.home_page.navigate_to(context.config.userdata['url'])
 
 @step(u'I search for "{item}"')
 def step_impl(context, item):
