@@ -1,4 +1,4 @@
-# example-selenium-python
+# example-selenium-python [![CircleCI](https://circleci.com/gh/marciovrl/example-selenium-python.svg?style=svg)](https://circleci.com/gh/marciovrl/example-selenium-python)
 Example UI testing using Selenium with Behave in Python.
 
 # Run project
