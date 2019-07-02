@@ -24,5 +24,5 @@ ADD requirements.txt /root/requirements.txt
 RUN pip install -r /root/requirements.txt
 
 WORKDIR /app
-COPY ./features /app/features
-CMD behave features/specifications/search_item.feature
+COPY . /app/
+CMD behave features/specifications/search_item.feature  
