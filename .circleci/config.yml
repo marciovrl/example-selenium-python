@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build-docker-run-test:
+    docker:
+      - image: circleci/buildpack-deps:xenial
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build image
+          command: |
+            docker build -t docker-behave .
+      - run:
+          name: Run test
+          command: |
+            docker run docker-behave
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-docker-run-test
