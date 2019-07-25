@@ -2,24 +2,23 @@ from selenium import webdriver
 
 class BasePage(object):
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(chrome_options=chrome_options)
-    driver.implicitly_wait(30)
-    driver.set_page_load_timeout(30)
+    def __init__(self, driver):
+        self.driver = driver
 
-    def go_url(context, url):
-        context.driver.get(url)
+    def go_url(self, url):
+        self.driver.get(url)
 
-    def input_text(context, text, *locator):
-        context.driver.find_element(*locator).send_keys(text)
+    def get_element(self, *locator):
+        return self.driver.find_element(*locator)
 
-    def click(context, *locator):
-        context.driver.find_element(*locator).click()
+    def input_text(self, text, *locator):
+        self.get_element(*locator).send_keys(text)
 
-    def is_displayed(context, *locator):
-        return context.driver.find_element(*locator).is_displayed()
+    def click(self, *locator):
+        self.get_element(*locator).click()
 
-    def close(context):
-        context.driver.close()
+    def is_displayed(self, *locator):
+        return self.get_element(*locator).is_displayed()
+
+    def close(self):
+        self.driver.close()
