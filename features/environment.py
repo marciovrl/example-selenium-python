@@ -1,8 +1,14 @@
-from selenium import webdriver
-from features.helpers.base_page import BasePage
+from features.helpers.browser import Browser
 
 def before_all(context):
-    context.browser = BasePage()
+    print ("before all")
+    
+def before_scenario(context, scenario):
+    context.browser = Browser().create_browser(browser=context.config.userdata["env_browser"])
+
+def after_scenario(context, scenario):
+    if context.browser is not None:
+        context.browser.close()
 
 def after_all(context):
-    context.browser.close()
+    print ("after all")

@@ -1,4 +1,4 @@
-# example-selenium-python
+# example-selenium-python [![CircleCI](https://circleci.com/gh/marciovrl/example-selenium-python.svg?style=svg)](https://circleci.com/gh/marciovrl/example-selenium-python)
 Example UI testing using Selenium with Behave in Python.
 
 # Run project
@@ -24,7 +24,17 @@ docker run docker-behave
 pip install -r requirements.txt
 ```
 
-- Run test
+- Run test firefox headless
 ```
-behave features/specifications/search_item.feature
+behave -D env_browser=firefox_headless features/specifications/search_item.feature
+```
+
+- Run test chrome headless
+```
+behave -D env_browser=chrome_headless features/specifications/search_item.feature
+```
+
+- Run test chrome
+```
+behave -D env_browser=chrome features/specifications/search_item.feature
 ```

@@ -7,6 +7,9 @@ class HomePageLocator(object):
     LABEL_ITEM_SEARCH = (By.XPATH, "//h1[@class='breadcrumb__title'][text()='golf']")
 
 class HomePage(BasePage):
+    def __init__(self, driver):
+        BasePage.__init__(self, driver)
+
     def navigate_to(self, url):
         self.go_url(url)
     
@@ -14,5 +17,6 @@ class HomePage(BasePage):
         self.input_text(item, *HomePageLocator.INPUT_ITEM)
         self.click(*HomePageLocator.BUTTON_INPUT)
 
-    def is_item_searched_displayed(self):
-        return self.is_displayed(*HomePageLocator.LABEL_ITEM_SEARCH)
+    def go_to_menu_item(self, option):
+        MENU_ITEM = (By.XPATH, "//a[@class='nav-menu-item-link'][text()='" + option + "']")
+        self.click(*MENU_ITEM)

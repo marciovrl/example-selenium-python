@@ -7,3 +7,7 @@ Background:
     Scenario: Search for existing items in the database
         When I search for "Golf"
         Then I view items according to my search
+
+    Scenario: Search for offers of the week
+        When Select "Ofertas da semana" option
+        Then I see Deals of the week
