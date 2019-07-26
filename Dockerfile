@@ -25,4 +25,4 @@ RUN pip install -r /root/requirements.txt
 
 WORKDIR /app
 COPY . /app/
-CMD behave features/specifications/search_item.feature  
+CMD behave -D env_browser=chrome_headless
