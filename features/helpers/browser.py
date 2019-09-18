@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
+
 class Browser:
     def create_browser(self, **kwargs):
         browser = kwargs.get('browser')
@@ -10,6 +11,7 @@ class Browser:
             options.add_argument('-headless')
             options.add_argument('--start-maximized')
             return webdriver.Firefox(options=options)
+
         elif(browser == 'chrome_headless'):
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--headless')
@@ -17,6 +19,7 @@ class Browser:
             chrome_options.add_argument('--disable-gpu')
             chrome_options.add_argument('--window-size=1400,600')
             return webdriver.Chrome(chrome_options=chrome_options)
+
         else:
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--start-maximized')

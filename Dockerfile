@@ -15,14 +15,16 @@ RUN apt-get update &&\
       apt install -y google-chrome-stable
 
 # Install ChromeDriver
-RUN wget https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip &&\
+RUN LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE) &&\
+      wget https://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip &&\
       unzip chromedriver_linux64.zip &&\
       cp chromedriver /usr/sbin/
 
-# Install Selenium and Behave
+# Install Dependencies
 ADD requirements.txt /root/requirements.txt
 RUN pip install -r /root/requirements.txt
 
+# Run test
 WORKDIR /app
 COPY . /app/
 CMD behave -D env_browser=chrome_headless
