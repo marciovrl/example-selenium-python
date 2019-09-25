@@ -2,7 +2,7 @@ version: 2
 jobs:
   run-test:
     docker:
-      - image: circleci/python:3.6.1
+      - image: circleci/python:3.6.1-browsers
 
     working_directory: ~/repo
 
