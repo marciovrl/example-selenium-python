@@ -34,9 +34,9 @@ jobs:
 
 workflows:
   version: 2
-  # build:
-  #   jobs:
-  #     - run-test
+  build:
+    jobs:
+      - run-test
 
   nightly:
     triggers:
@@ -45,6 +45,6 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - master
     jobs:
       - run-test
