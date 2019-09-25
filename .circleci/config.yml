@@ -31,6 +31,7 @@ jobs:
           command: |
             . venv/bin/activate
             behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
+          when: always
 
 workflows:
   version: 2
