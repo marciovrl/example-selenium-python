@@ -34,7 +34,7 @@ jobs:
 
 version: 2
 jobs:
-  run-test:
+  allure-generate:
     docker:
       - image: circleci/python:3.6.1
 
