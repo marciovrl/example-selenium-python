@@ -39,6 +39,17 @@ jobs:
             allure generate -c report-allure/result -o report-allure/html
           when: always
 
+      - run:
+          name: teste
+          command: |
+            . venv/bin/activate
+            ls
+            cd report-allure/
+            ls
+            cd html/
+            ls
+          when: always
+
 workflows:
   version: 2
   build:
