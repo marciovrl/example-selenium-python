@@ -9,11 +9,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          command: |
-            sudo pip install --upgrade pip
-            pip install behave
-
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
@@ -24,6 +19,8 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
+            pip install --upgrade pip
+            pip install behave
             pip install -r requirements.txt      
 
       - save_cache:
