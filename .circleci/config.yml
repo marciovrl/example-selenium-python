@@ -32,7 +32,6 @@ jobs:
             . venv/bin/activate
             behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
 
-jobs:
   allure-generate:
     docker:
       - image: circleci/python:3.6.1
@@ -45,7 +44,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
-            - v1-dependencies-   
+            - v1-dependencies-
 
       - run:
           name: allure generate
