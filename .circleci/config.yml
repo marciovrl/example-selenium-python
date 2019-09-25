@@ -38,7 +38,7 @@ jobs:
             apt-get install software-properties-common && apt-get update
             apt-add-repository ppa:yandex-qatools/allure-framework && apt-get update
             apt-get install allure-commandline
-           . venv/bin/activate
+            . venv/bin/activate
             allure generate -c report-allure/result -o report-allure/html
           when: always
 
