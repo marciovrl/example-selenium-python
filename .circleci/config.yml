@@ -35,10 +35,10 @@ jobs:
       - run:
           name: allure generate
           command: |
+            . venv/bin/activate
             apt-add-repository ppa:yandex-qatools/allure-framework
             apt-get update
             apt-get install allure-commandline
-            . venv/bin/activate
             allure generate -c report-allure/result -o report-allure/html
           when: always
 
