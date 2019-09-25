@@ -58,4 +58,6 @@ workflows:
   build:
     jobs:
       - run-test
-      - allure-generate
+      - allure-generate:
+          requires:
+            - run-test
