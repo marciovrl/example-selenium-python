@@ -32,7 +32,6 @@ jobs:
             . venv/bin/activate
             behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
 
-version: 2
 jobs:
   allure-generate:
     docker:
