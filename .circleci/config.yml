@@ -37,3 +37,12 @@ workflows:
   build:
     jobs:
       - run-test
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "14 68 * * *"
+          filters:
+            branches:
+              only:
+                - develop
