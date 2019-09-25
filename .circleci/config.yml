@@ -1,22 +1,39 @@
 version: 2
 jobs:
-  build-docker-run-test:
+  run-test:
     docker:
-      - image: circleci/buildpack-deps:xenial
+      - image: circleci/python:3.6.1-browsers
+
+    working_directory: ~/repo
+
     steps:
       - checkout
-      - setup_remote_docker
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
+
       - run:
-          name: Build image
+          name: install dependencies
           command: |
-            docker build -t docker-behave .
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt      
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
       - run:
-          name: Run test
+          name: run tests
           command: |
-            docker run docker-behave
+            . venv/bin/activate
+            behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
 
 workflows:
   version: 2
   build:
     jobs:
-      - build-docker-run-test
+      - run-test
