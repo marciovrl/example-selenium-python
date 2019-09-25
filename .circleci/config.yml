@@ -8,6 +8,12 @@ jobs:
 
     steps:
       - checkout
+
+      - run:
+          command: |
+            pip install --upgrade pip
+            pip install behave
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
@@ -24,8 +30,6 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
-
-      - run: pip install behave
 
       - run: behave -D env_browser=chrome_headless
 
