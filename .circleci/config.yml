@@ -30,7 +30,13 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            behave -D env_browser=chrome_headless
+            behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
+
+      - run:
+          name: allure generate
+          command: |
+            . venv/bin/activate
+            allure generate report-allure --clean -o report-allure/html
 
 workflows:
   version: 2
