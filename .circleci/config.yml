@@ -34,14 +34,14 @@ jobs:
 
 workflows:
   version: 2
-  build:
-    jobs:
-      - run-test
+  # build:
+  #   jobs:
+  #     - run-test
 
   nightly:
     triggers:
       - schedule:
-          cron: "15 0 * * *"
+          cron: "15 2 * * *"
           filters:
             branches:
               only:
