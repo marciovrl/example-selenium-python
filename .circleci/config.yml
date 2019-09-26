@@ -51,7 +51,7 @@ jobs:
           command: |
             sudo apt-get -y -qq install awscli
             ls
-            aws s3 sync report/results s3://sto-features/report-selenium-python --delete
+            # aws s3 sync report/results s3://sto-features/report-selenium-python --delete
           when: always
   # build-html:
   #   docker:
