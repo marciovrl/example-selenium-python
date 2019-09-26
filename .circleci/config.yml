@@ -38,6 +38,7 @@ jobs:
             . venv/bin/activate
             python -m behave2cucumber -i ./report/results/report.json -o ./report/results/report.json
           when: always
+
   build-html:
     docker:
       - image: circleci/node:8
@@ -72,6 +73,7 @@ workflows:
       - build-html:
           requires:
             - run-test
+          when: always
 
   nightly:
     triggers:
