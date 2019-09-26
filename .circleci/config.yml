@@ -73,7 +73,7 @@ workflows:
       - build-html:
           requires:
             - run-test
-          when: always
+      when: always
 
   nightly:
     triggers:
