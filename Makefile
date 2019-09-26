@@ -19,3 +19,15 @@ generate-allure: ## Build report Allure.
 .PHONY: test
 test: ## Total execution: Install dependencies, run tests, and report to Allure.
 	install-dependencies run-test generate-allure
+
+.PHONY: test-report
+test: ## Execute behave.
+	behave -f json.pretty -o ./report/results/report.json -D env_browser=chrome_headless
+
+.PHONY: behave2cucumber
+test: ## Convert json behave to json cucumber.
+	python -m behave2cucumber -i ./report/results/report.json -o ./report/results/report.json 
+
+.PHONY: generate-cucumber-html
+test: ## generate html.
+	cd report/ && node index.js	
