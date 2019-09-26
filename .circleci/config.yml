@@ -30,33 +30,42 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
+            behave -f json.pretty -o ./report/results/report.json -D env_browser=chrome_headless
 
-      # - run:
-      #     name: allure generate
-      #     command: |
-      #       apt-get install software-properties-common && apt-get update
-      #       apt-add-repository ppa:yandex-qatools/allure-framework && apt-get update
-      #       apt-get install allure-commandline
-      #       . venv/bin/activate
-      #       allure generate -c report-allure/result -o report-allure/html
-      #     when: always
-      # - run:
-      #     name: teste
-      #     command: |
-      #       . venv/bin/activate
-      #       ls
-      #       cd report-allure/
-      #       ls
-      #       cd html/
-      #       ls
-      #     when: always
+      - run:
+          name: convert report
+          command: |
+            . venv/bin/activate
+            python -m behave2cucumber -i ./report/results/report.json -o ./report/results/report.json
+          when: always
+  build-html:
+    docker:
+      - image: circleci/node:8
+
+    working_directory: ~/repo/
+
+    steps:
+      - checkout
+
+      - run:
+          name: install-dependencies
+          command: cd report && npm install
+
+      - run:
+          name: build-html
+          command: cd report/ && node index.jj
+
+      - run:
+          name: install-awscli
+          command: sudo apt-get -y -qq install awscli
+
+      - run:
+          name: deploy-s3
+          command: |
+            aws s3 sync results/ s3://sto-features/report-selenium-python --delete
 
 workflows:
   version: 2
-  build:
-    jobs:
-      - run-test
 
   nightly:
     triggers:
@@ -68,3 +77,4 @@ workflows:
                 - develop
     jobs:
       - run-test
+      - build-html
