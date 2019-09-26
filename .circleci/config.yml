@@ -66,6 +66,10 @@ jobs:
 
 workflows:
   version: 2
+  build:
+    jobs:
+      - run-test
+      - build-html
 
   nightly:
     triggers:
