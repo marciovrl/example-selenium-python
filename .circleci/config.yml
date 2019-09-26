@@ -32,26 +32,25 @@ jobs:
             . venv/bin/activate
             behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
 
-      - run:
-          name: allure generate
-          command: |
-            apt-get install software-properties-common && apt-get update
-            apt-add-repository ppa:yandex-qatools/allure-framework && apt-get update
-            apt-get install allure-commandline
-            . venv/bin/activate
-            allure generate -c report-allure/result -o report-allure/html
-          when: always
-
-      - run:
-          name: teste
-          command: |
-            . venv/bin/activate
-            ls
-            cd report-allure/
-            ls
-            cd html/
-            ls
-          when: always
+      # - run:
+      #     name: allure generate
+      #     command: |
+      #       apt-get install software-properties-common && apt-get update
+      #       apt-add-repository ppa:yandex-qatools/allure-framework && apt-get update
+      #       apt-get install allure-commandline
+      #       . venv/bin/activate
+      #       allure generate -c report-allure/result -o report-allure/html
+      #     when: always
+      # - run:
+      #     name: teste
+      #     command: |
+      #       . venv/bin/activate
+      #       ls
+      #       cd report-allure/
+      #       ls
+      #       cd html/
+      #       ls
+      #     when: always
 
 workflows:
   version: 2
@@ -62,10 +61,10 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "18 18 * * *"
+          cron: "0 * * * *"
           filters:
             branches:
               only:
-                - master
+                - develop
     jobs:
       - run-test
