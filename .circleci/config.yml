@@ -2,7 +2,7 @@ version: 2
 jobs:
   run-test:
     docker:
-      - image: circleci/python:3.6.1-browsers
+      - image: circleci/python:latest-node-browsers-legacy
 
     working_directory: ~/repo
 
@@ -30,18 +30,30 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            behave -f allure -o ./report-allure/result -D env_browser=chrome_headless
+            behave -f json.pretty -o ./report/results/report.json -D env_browser=chrome_headless
+
+      - run:
+          name: build-html
+          command: |
+            . venv/bin/activate
+            python -m behave2cucumber -i ./report/results/report.json -o ./report/results/report.json
+            cd report && npm install && node index.js
+          when: always
+
+      - run:
+          name: deploy-s3
+          command: |
+            sudo apt-get -y -qq install awscli
+            aws s3 sync report/results s3://examples-marciovrl/report-selenium-python --delete
+          when: always
 
 workflows:
   version: 2
-  build:
-    jobs:
-      - run-test
 
   nightly:
     triggers:
       - schedule:
-          cron: "18 18 * * *"
+          cron: "0 * * * *"
           filters:
             branches:
               only:
