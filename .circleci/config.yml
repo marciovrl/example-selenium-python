@@ -70,8 +70,8 @@ workflows:
     jobs:
       - run-test
       - build-html:
-        requires:
-          - run-test
+          requires:
+            - run-test
 
   nightly:
     triggers:
@@ -84,5 +84,5 @@ workflows:
     jobs:
       - run-test
       - build-html:
-        requires:
-          - run-test
+          requires:
+            - run-test
