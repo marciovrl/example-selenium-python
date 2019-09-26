@@ -2,8 +2,7 @@ version: 2
 jobs:
   run-test:
     docker:
-      - image: circleci/python:3.6.1-browsers
-      - image: circleci/node:8
+      - image: circleci/python:3.6.1-node-browsers
 
     working_directory: ~/repo
 
@@ -46,6 +45,13 @@ jobs:
             . venv/bin/activate
             cd report && npm install
             cd report/ && node index.js
+          when: always
+
+      - run:
+          name: deploy-s3
+          command: |
+            sudo apt-get -y -qq install awscli
+            aws s3 sync results/ s3://sto-features/report-selenium-python --delete
           when: always
   # build-html:
   #   docker:
