@@ -43,8 +43,7 @@ jobs:
           name: build-html
           command: |
             . venv/bin/activate
-            cd report && npm install
-            cd report && node index.js
+            cd report && npm install && node index.js
           when: always
 
       - run:
