@@ -2,7 +2,7 @@ version: 2
 jobs:
   run-test:
     docker:
-      - image: circleci/python:3.6.1-node-browsers
+      - image: circleci/3.8-rc-buster-node-browsers-legacy
 
     working_directory: ~/repo
 
