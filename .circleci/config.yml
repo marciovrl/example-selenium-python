@@ -44,7 +44,7 @@ jobs:
           command: |
             . venv/bin/activate
             cd report && npm install
-            cd report/ && node index.js
+            cd report && node index.js
           when: always
 
       - run:
