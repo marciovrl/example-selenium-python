@@ -4,9 +4,9 @@ from features.helpers.base_page import BasePage
 
 class HomePageLocator(object):
     INPUT_ITEM = (By.NAME, 'as_word')
-    BUTTON_INPUT = (By.XPATH, "//button[@class='nav-search-btn']")
+    BUTTON_INPUT = (By.XPATH, '//button[@class="nav-search-btn"]')
     LABEL_ITEM_SEARCH = (
-        By.XPATH, "//h1[@class='breadcrumb__title'][text()='golf']")
+        By.XPATH, '//h1[@class="breadcrumb__title"][text()="golf"]')
 
 
 class HomePage(BasePage):
@@ -22,5 +22,5 @@ class HomePage(BasePage):
 
     def go_to_menu_item(self, option):
         MENU_ITEM = (
-            By.XPATH, "//a[@class='nav-menu-item-link'][text()='" + option + "']")
+            By.XPATH, '//a[@class="nav-menu-item-link"][text()="' + option + '"]')
         self.click(*MENU_ITEM)

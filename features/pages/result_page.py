@@ -12,10 +12,10 @@ class ResultPage(BasePage):
 
     def is_item_searched_displayed(self, item):
         LABEL_ITEM = (
-            By.XPATH, "//h1[@class='breadcrumb__title'][text()='" + item + "']")
+            By.XPATH, '//h1[@class="breadcrumb__title"][text()="' + item + '"]')
         return self.is_displayed(*LABEL_ITEM)
 
     def is_page_the_selected(self, option):
         LABEL_PAGE = (
-            By.XPATH, "//h1[@class='breadcrumb__title'][text()='" + option + "']")
+            By.XPATH, '//h1[@class="breadcrumb__title"][text()="' + option + '"]')
         return self.is_displayed(*LABEL_PAGE)
