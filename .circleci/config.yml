@@ -46,17 +46,16 @@ jobs:
             sudo apt-get -y -qq install awscli
             aws s3 sync report/results s3://examples-marciovrl/report-selenium-python --delete
           when: always
+# workflows:
+#   version: 2
 
-workflows:
-  version: 2
-
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 13-20 * * 1-5"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - run-test
+#   nightly:
+#     triggers:
+#       - schedule:
+#           cron: "0 13-20 * * 1-5"
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#     jobs:
+#       - run-test
