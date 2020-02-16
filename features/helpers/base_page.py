@@ -16,6 +16,9 @@ class BasePage(object):
     def get_element(self, *locator):
         return WebDriverWait(self.driver, 50).until(ec.visibility_of_element_located((locator[0], locator[1])))
 
+    def get_elements(self, *locator):
+        return self.driver.find_elements(*locator)
+
     def input_text(self, text, *locator):
         self.get_element(*locator).send_keys(text)
 
@@ -35,6 +38,9 @@ class BasePage(object):
 
     def sleep(self, time_sleep):
         time.sleep(time_sleep)
+
+    def get_text(self, *locator):
+        return self.get_element(*locator).text
 
     def close(self):
         self.driver.quit()
