@@ -24,7 +24,7 @@ docker build -t docker-behave .
 docker run docker-behave
 ```
 
-# Run without Docker use
+# Run without Docker
 
 - Run test firefox headless
 
