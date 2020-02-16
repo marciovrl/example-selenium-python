@@ -29,7 +29,9 @@ class Browser:
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--headless')
             chrome_options.add_experimental_option(
-                "mobileEmulation", mobile_emulation)
+                'mobileEmulation',
+                mobile_emulation
+            )
             return webdriver.Chrome(chrome_options=chrome_options)
 
         else:
