@@ -9,5 +9,5 @@ Feature: Search item
         Then I view items according to my search
 
     Scenario: Search for offers of the week
-        When Select "Ofertas da semana" option
-        Then I see Deals of the week
+        When I select "Ofertas" option
+        Then I see deals
