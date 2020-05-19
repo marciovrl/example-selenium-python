@@ -15,9 +15,6 @@ class ListPageLocator(object):
 
 
 class ListPage(BasePage):
-    def __init__(self, driver):
-        BasePage.__init__(self, driver)
-
     def is_item_searched_displayed(self):
         return self.get_text(*ListPageLocator.LABEL_RESULT)
 
