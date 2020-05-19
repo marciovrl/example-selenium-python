@@ -1,5 +1,4 @@
-import os
-from features.helpers.browser import Browser
+from features.helpers.browser_factory import get_browser
 
 
 def before_all(context):
@@ -7,13 +6,14 @@ def before_all(context):
 
 
 def before_scenario(context, scenario):
-    context.browser = Browser().create_browser(
-        browser=context.config.userdata['env_browser'])
+    context.browser = get_browser(
+        context.config.userdata['browser']
+    )
 
 
 def after_scenario(context, scenario):
     if context.browser is not None:
-        context.browser.close()
+        context.browser.quit()
 
 
 def after_all(context):

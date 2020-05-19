@@ -20,9 +20,6 @@ class HomePageLocator(object):
 
 
 class HomePage(BasePage):
-    def __init__(self, driver):
-        BasePage.__init__(self, driver)
-
     def navigate_to(self, url):
         self.go_url(url)
 
